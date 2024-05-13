@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShootingStarScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    private double speed = 1.0;
+    private float speed = 2.0f;
 
     private float x;
     private float y;
@@ -26,7 +26,7 @@ public class ShootingStarScript : MonoBehaviour
         speed = Random.Range(1.0f, 2.0f);
 
         t = Instantiate(Target, new Vector3(x, transform.position.y, z), Quaternion.identity);
-        StartCoroutine(StartMetorite());
+        StartCoroutine(StartMetorite2());
         //StartCoroutine(PushMetorite());
 
     }
@@ -34,11 +34,12 @@ public class ShootingStarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(t.transform);
+        
     }
 
     private IEnumerator StartMetorite()
     {
+        transform.LookAt(t.transform);
         float timer = 0f;
         Vector3 targetPosition = new Vector3(x, transform.position.y - y, z);
         Vector3 startingPosition = transform.position;
@@ -46,7 +47,7 @@ public class ShootingStarScript : MonoBehaviour
         
         while(timer < timeToLive)
         {
-            float t = Mathf.SmoothStep(0, 1, timer / timeToLive);
+            float t = Mathf.SmoothStep(0, 1, timer / timeToLive) * speed;
             transform.position = Vector3.Lerp(startingPosition, targetPosition, t);
             timer += Time.deltaTime;
             yield return null;
@@ -56,6 +57,28 @@ public class ShootingStarScript : MonoBehaviour
         Destroy(this.gameObject);
         Destroy(t.gameObject);
     }
+
+    private IEnumerator StartMetorite2()
+    {
+        transform.LookAt(t.transform);
+        float timer = 0f;
+        Vector3 targetPosition = new Vector3(x, transform.position.y - y, z);
+        Vector3 startingPosition = transform.position;
+
+
+        while (transform.position != targetPosition)
+        {
+            float t = Mathf.SmoothStep(0, 1, timer / timeToLive) * speed;
+            transform.position = Vector3.Lerp(startingPosition, targetPosition, t);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
+        // destroy here 
+        Destroy(this.gameObject);
+        Destroy(t.gameObject);
+    }
+
 
     private IEnumerator PushMetorite()
     {

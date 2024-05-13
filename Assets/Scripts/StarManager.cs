@@ -10,10 +10,10 @@ public class StarManager : MonoBehaviour
     public GameObject Star;
     public GameObject SpawnArea;
 
-    private Vector3 a = new Vector3(0, 250, 0);
+    private Vector3 a;
     void Start()
     {
-
+        StartCoroutine(SpawnStars());
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class StarManager : MonoBehaviour
             float z = Random.Range(100.0f, 150.0f);
 
             float yRot = Random.Range(-40f, 40f);
-            Quaternion starDirection = new Quaternion(0, yRot, 0, 0);
+ 
 
             float timeToLive = Random.Range(1.5f, 2.0f);
 
@@ -37,5 +37,13 @@ public class StarManager : MonoBehaviour
 
             Instantiate(Star, a, Quaternion.identity);
         }
+    }
+
+    private IEnumerator SpawnStars()
+    {
+        a = new Vector3(Random.Range(-80.0f, 80.0f), 250, Random.Range(-80.0f, 80.0f));
+        Instantiate(Star, a, Quaternion.identity);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(SpawnStars());
     }
 }
