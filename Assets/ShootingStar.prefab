@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7b112082e6434439a96e8ac27f6efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 7618860520795434180, guid: a35db554e33d7764f993d90b202ca74e, type: 3}
 --- !u!1 &1459311684434330017
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,13 +146,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459311684434330017}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.2483032}
   m_LocalScale: {x: 0.31222406, y: 0.31222406, z: 0.31222406}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 757944335070388716}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!198 &6493503215937968174
 ParticleSystem:
   m_ObjectHideFlags: 0
