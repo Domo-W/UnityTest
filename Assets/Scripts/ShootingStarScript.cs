@@ -14,16 +14,51 @@ public class ShootingStarScript : MonoBehaviour
     private float timeToLive;
 
     public GameObject Target;
+    public GameObject Particles;
     private GameObject t;
+    private ParticleSystem p;
     void Start()
     {
-        x = Random.Range(100.0f, 150.0f);
-        y = Random.Range(20.0f, 40.0f);
-        z = Random.Range(100.0f, 150.0f);
+        float posX = transform.position.x;
+        float posZ = transform.position.x;
+        int coinFlip = Random.Range(0, 1);
+        int colorNum = Random.Range(0, 6);
+        if(coinFlip == 0)
+        {
+            x = Random.Range(posX + 100.0f, posX + 150.0f);
+            y = Random.Range(20.0f, 40.0f);
+            z = Random.Range(posZ + 100.0f, posZ + 150.0f);
+        }
+        else
+        {
+            x = Random.Range(posX - 100.0f, posX - 150.0f);
+            y = Random.Range(20.0f, 40.0f);
+            z = Random.Range(posZ - 100.0f, posZ - 150.0f);
+        }
 
+        switch(colorNum)
+        {
+            case 0:
+
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+
+        }
+
+       
         timeToLive = Random.Range(1.5f, 2.0f);
-
-        speed = Random.Range(1.0f, 2.0f);
+        speed = Random.Range(2.0f, 3.0f);
 
         t = Instantiate(Target, new Vector3(x, transform.position.y, z), Quaternion.identity);
         StartCoroutine(StartMetorite2());
@@ -77,21 +112,6 @@ public class ShootingStarScript : MonoBehaviour
         // destroy here 
         Destroy(this.gameObject);
         Destroy(t.gameObject);
-    }
-
-
-    private IEnumerator PushMetorite()
-    {
-        float timer = 0f;
-        while (timer < timeToLive)
-        {
-            transform.TransformDirection(Vector3.forward * 50);
-            yield return null; 
-            timer += Time.deltaTime;
-        }
-
-
-      
     }
 
     // you have a star spawning manager, that spawns them in a random position and a slightly random angle 
