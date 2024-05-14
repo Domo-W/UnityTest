@@ -35,32 +35,10 @@ public class ShootingStarScript : MonoBehaviour
             y = Random.Range(20.0f, 40.0f);
             z = Random.Range(posZ - 100.0f, posZ - 150.0f);
         }
-
-        switch(colorNum)
-        {
-            case 0:
-
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-
-        }
-
-       
         timeToLive = Random.Range(1.5f, 2.0f);
         speed = Random.Range(2.0f, 3.0f);
 
-        t = Instantiate(Target, new Vector3(x, transform.position.y, z), Quaternion.identity);
+        t = Instantiate(Target, new Vector3(x, 250f, z), Quaternion.identity);
         StartCoroutine(StartMetorite2());
         //StartCoroutine(PushMetorite());
 
@@ -97,9 +75,11 @@ public class ShootingStarScript : MonoBehaviour
     {
         transform.LookAt(t.transform);
         float timer = 0f;
-        Vector3 targetPosition = new Vector3(x, transform.position.y - y, z);
+        Material actualStarMat = this.gameObject.GetComponent<MeshRenderer>().material;
+        Material actualTrailMat = this.gameObject.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().materials[1];
+        Debug.Log(actualTrailMat.name);
+        Vector3 targetPosition = new Vector3(x, 250f, z);
         Vector3 startingPosition = transform.position;
-
 
         while (transform.position != targetPosition)
         {
@@ -110,6 +90,17 @@ public class ShootingStarScript : MonoBehaviour
         }
         transform.position = targetPosition;
         // destroy here 
+        Color baseColor = actualStarMat.GetColor("_Color");
+        Color trailColor = actualTrailMat.GetColor("_Color");
+        float tempAlpha = 1f;
+        this.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        while (actualStarMat.color.a > 0f)
+        {
+            actualStarMat.color = new Color(baseColor.r, baseColor.g, baseColor.b, tempAlpha);
+            actualTrailMat.color = new Color(trailColor.r, trailColor.g, trailColor.b, tempAlpha);
+            tempAlpha -= 0.1f;
+            yield return null;
+        }
         Destroy(this.gameObject);
         Destroy(t.gameObject);
     }

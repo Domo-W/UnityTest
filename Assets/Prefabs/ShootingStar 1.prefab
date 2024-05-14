@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7816573865734180170}
   - component: {fileID: 1487470288380797834}
   m_Layer: 0
-  m_Name: ShootingStar
+  m_Name: ShootingStar 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -930,7 +930,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2
@@ -1421,7 +1421,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -4898,8 +4898,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4fb79894f233e1548b5af05d300bfccf, type: 2}
-  - {fileID: 2100000, guid: 9c9c7cf86cfd2dd48908dcf4a909bf11, type: 2}
+  - {fileID: 2100000, guid: eca11aa968f4c6940acbecf75df3e340, type: 2}
+  - {fileID: 2100000, guid: 58c531ab52df4c446b7e9775b857c49f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
